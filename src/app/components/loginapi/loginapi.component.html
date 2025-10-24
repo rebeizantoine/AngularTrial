@@ -1,0 +1,58 @@
+<div class="login-page">
+  <div class="login-page__wrapper">
+    <div class="login-page__box">
+      <div class="login-page__header">
+        <span>Login</span>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <!-- Email -->
+        <div class="login-page__input-box">
+          <input type="email" formControlName="email" class="login-page__input-field" required />
+          <label class="login-page__label" for="email">Email</label>
+          <i class="bx bx-envelope login-page__icon"></i>
+          <div
+            *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched"
+            class="login-page__error"
+          >
+            Valid email is required
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="login-page__input-box">
+          <input
+            type="password"
+            formControlName="password"
+            class="login-page__input-field"
+            required
+          />
+          <label class="login-page__label" for="password">Password</label>
+          <i class="bx bx-lock login-page__icon"></i>
+          <div
+            *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched"
+            class="login-page__error"
+          >
+            Password is required
+          </div>
+        </div>
+
+        <p *ngIf="errorMessage" class="login-page__error">
+          {{ errorMessage }}
+        </p>
+
+        <!-- Submit -->
+        <div class="login-page__input-box">
+          <button type="submit" class="login-page__submit" [disabled]="loginForm.invalid">
+            Login
+          </button>
+        </div>
+
+        <!-- Register -->
+        <div class="login-page__register">
+          <span>Don't have an account? <a href="#">Register</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

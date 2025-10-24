@@ -1,0 +1,24 @@
+<div style="padding: 20px; border: 1px solid #ccc; max-width: 400px; margin: 50px auto">
+  <h2>🔒 Login</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <div style="margin-bottom: 10px">
+      <label for="email">Email:</label>
+      <input id="email" type="email" formControlName="email" placeholder="e.g., admin@app.com" />
+    </div>
+
+    <div style="margin-bottom: 20px">
+      <label for="password">Password:</label>
+      <input id="password" type="password" formControlName="password" placeholder="pass" />
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid">Log In</button>
+  </form>
+
+  <p *ngIf="errorMessage" style="color: red; margin-top: 15px">{{ errorMessage }}</p>
+
+  <p style="margin-top: 20px">
+    Test Credentials:
+    <br />Admin: **admin@app.com** / **pass** <br />User: **user@app.com** / **pass**
+  </p>
+</div>

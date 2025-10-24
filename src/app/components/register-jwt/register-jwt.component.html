@@ -1,0 +1,30 @@
+<div class="register-container">
+  <h2>Register</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <label for="email">Email:</label>
+    <input id="email" type="email" placeholder="Enter your email" formControlName="email" />
+
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      type="password"
+      placeholder="Enter your password"
+      formControlName="password"
+    />
+
+    <label for="role">Role:</label>
+    <select id="role" formControlName="role">
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p class="message" *ngIf="message()">{{ message() }}</p>
+
+  <button type="button" (click)="goToLogin()" class="switch-link">
+    Already have an account? Login
+  </button>
+</div>

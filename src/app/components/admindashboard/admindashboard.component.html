@@ -1,0 +1,8 @@
+<div style="padding: 20px; background-color: #fff1e6; border: 1px solid #ff9c6e">
+  <h1>👑 Admin Dashboard</h1>
+  <p>Welcome, Administrator! You have full access.</p>
+  <p>Your current role is: **{{ authService.currentUserRole() }}** (from signal)</p>
+
+  <button (click)="authService.logout()">Logout</button>
+  <a routerLink="/user/dashboard" style="margin-left: 20px">Go to User Dashboard</a>
+</div>

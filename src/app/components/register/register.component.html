@@ -1,0 +1,31 @@
+<div class="register-container">
+  <h2>📝 Register</h2>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" type="email" formControlName="email" placeholder="e.g., user@app.com" />
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input id="password" type="password" formControlName="password" placeholder="min 4 chars" />
+    </div>
+
+    <div>
+      <label for="role">Role:</label>
+      <select id="role" formControlName="role">
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+      </select>
+    </div>
+    <button type="submit" [disabled]="registerForm.invalid">Register</button>
+  </form>
+
+  <p *ngIf="message()">{{ message() }}</p>
+
+  <p>
+    Already registered?
+    <a [routerLink]="'/login'">Go to Login</a>
+  </p>
+</div>

@@ -1,0 +1,66 @@
+/* eslint-disable @angular-eslint/prefer-inject */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../../services/auth123';
+
+@Component({
+  selector: 'app-login-api',
+  standalone: true,
+  imports: [ReactiveFormsModule, RouterModule, CommonModule, HttpClientModule],
+  templateUrl: './loginapi.component.html',
+  styleUrls: ['./loginapi.component.scss'],
+})
+export class LoginApiComponent {
+  loginForm: FormGroup;
+  errorMessage = '';
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private http: HttpClient,
+    private authService: AuthService
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
+  }
+
+  login() {
+    if (this.loginForm.invalid) return;
+
+    const { email, password } = this.loginForm.value;
+
+    this.http
+      .post<{ user: any; token: string }>('http://localhost:3000/api/auth/login', {
+        email,
+        password,
+      })
+      .subscribe({
+        next: (res) => {
+          if (res?.token) {
+            this.authService['setTokenAndPayload'](res.token); // private method via bracket
+            const payload = (this.authService as any)['payload']?.();
+            console.log('Decoded JWT payload:', payload);
+
+            const role = this.authService.currentUserRole();
+            if (role === 'admin') {
+              this.router.navigate(['/admin/dashboard']);
+            } else {
+              this.router.navigate(['/dashboard']);
+            }
+          } else {
+            this.errorMessage = 'Invalid email or password.';
+          }
+        },
+        error: (err) => {
+          this.errorMessage = err.error?.message || 'Login failed.';
+        },
+      });
+  }
+}

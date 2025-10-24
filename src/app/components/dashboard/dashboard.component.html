@@ -1,0 +1,10 @@
+<div style="padding: 20px; background-color: #e6f7ff; border: 1px solid #91d5ff">
+  <h1>👤 User Dashboard</h1>
+  <p>Welcome! You are logged in as a **Standard User**.</p>
+  <p>Your current role is: **{{ authService.currentUserRole() }}** (from signal)</p>
+
+  <button (click)="authService.logout()">Logout</button>
+  <a routerLink="/admin/dashboard" style="margin-left: 20px; color: red"
+    >Try accessing Admin Dashboard (Should redirect to /unauthorized)</a
+  >
+</div>

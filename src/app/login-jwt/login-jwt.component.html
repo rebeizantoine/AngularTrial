@@ -1,0 +1,31 @@
+<div class="login-container">
+  <h2>Login</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <label for="email">Email:</label>
+    <input id="email" type="email" placeholder="Enter your email" formControlName="email" />
+
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      type="password"
+      placeholder="Enter your password"
+      formControlName="password"
+    />
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <a
+    href="#"
+    (click)="goToRegister(); $event.preventDefault()"
+    (keydown.enter)="goToRegister()"
+    (keydown.space)="goToRegister()"
+    tabindex="0"
+    class="switch-link"
+  >
+    Don't have an account? Register
+  </a>
+</div>

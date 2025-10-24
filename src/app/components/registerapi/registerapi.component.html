@@ -1,0 +1,62 @@
+<div class="register-page">
+  <div class="register-page__box">
+    <div class="register-page__header">Register</div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <!-- Email -->
+      <div class="register-page__input-box">
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          class="register-page__input-field"
+          required
+        />
+        <label for="email" class="register-page__label">Email</label>
+        <i class="bx bx-envelope register-page__icon"></i>
+      </div>
+
+      <!-- Password -->
+      <div class="register-page__input-box">
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          class="register-page__input-field"
+          required
+        />
+        <label for="password" class="register-page__label">Password</label>
+        <i class="bx bx-lock register-page__icon"></i>
+      </div>
+
+      <!-- Role -->
+      <div class="register-page__input-box">
+        <select id="role" formControlName="role" class="register-page__select-field" required>
+          <option value="" disabled selected>Select Role</option>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+        <label for="role" class="register-page__label">Role</label>
+        <i class="bx bx-user register-page__icon"></i>
+      </div>
+
+      <!-- Message -->
+      <p *ngIf="message()" class="register-page__message">{{ message() }}</p>
+
+      <!-- Submit -->
+      <div class="register-page__input-box">
+        <button type="submit" class="register-page__submit" [disabled]="registerForm.invalid">
+          Register
+        </button>
+      </div>
+
+      <!-- Footer -->
+      <div class="register-page__footer">
+        <span>
+          Already registered?
+          <button type="button" class="link-button" (click)="goToLogin()">Go to Login</button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>

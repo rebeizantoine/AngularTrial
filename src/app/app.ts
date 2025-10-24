@@ -1,12 +1,16 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss'],
 })
 export class App {
-  protected readonly title = signal('auth-portal');
+  constructor() {
+    const exp = Math.floor(Date.now() / 1000) + 3600; // Unix timestamp that has a 1h expiry
+    console.log(exp);
+  }
 }
