@@ -1,0 +1,5 @@
+{
+  "root": "dist/auth-portal",
+  "cleanUrls": true,
+  "redirects": [{ "source": "/**", "destination": "/index.html" }]
+}
