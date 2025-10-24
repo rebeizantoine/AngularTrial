@@ -1,5 +1,5 @@
 {
-  "root": "dist/auth-portal",
+  "root": "dist/auth-portal/browser",
   "cleanUrls": true,
   "redirects": [{ "source": "/**", "destination": "/index.html" }]
 }
